@@ -16,9 +16,9 @@ class Api::V1::CommentsController < ApplicationController
 		@comment = @article.comments.new(comment_params)
 
 		if @comment.save
-			render json: @comment, status: :created, location: api_v1_article_comment_url(@article, @comment)
+			render json: @comment, status: :created, location: api_v1_article_comments_url(@article, @comment)
 		else 
-			render json: @comment.errors, status: :unprocessable_entity
+			render json: @comment, status: :unprocessable_entity
 		end
 	end
 
@@ -45,7 +45,7 @@ class Api::V1::CommentsController < ApplicationController
 	end
 
 	def comment_params
-		params.require(:comment).permit(:title, :definition)
+		params.require(:comment).permit(:commenter, :body)
 	end
 end
 

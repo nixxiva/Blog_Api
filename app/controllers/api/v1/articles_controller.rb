@@ -1,6 +1,7 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: [ :show, :update, :destroy ]
 
+  # Get /api/v1/articles
   def index
     @articles = Article.all
 
